@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Module 8 Beta</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-statistics/1.0.0/simple_statistics.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        #map {
+            position: absolute;
+            width: 66%;
+            top: 0;
+            bottom: 0;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+        .legend {
+            padding: 6px 8px;
+            font-size: 1em;
+            background: rgba(75,75,75,0.8);
+            color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            width: 160px;
+        }
+        .legend h3 {
+            font-size: 1.1em;
+            font-weight: bold;
+            line-height: 1em;
+            color: white;
+            margin: 0;
+        }
+        .legend li {
+            list-style-type: none;
+            height: 22px;
+        }
+        .legend span {
+            width: 30px;
+            height: 20px;
+            float: left;
+            margin-right: 10px;
+        }
+        #ui-controls {
+            width: 186px;   
+            padding: 8px 25px 8px 15px;
+            background: rgba(75,75,75,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px; 
+            color: white;
+        }
+        .year-slider {
+            width: 100%;
+        }
+        #side-panel {
+            position: absolute;
+            left: 66%;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 33%;
+            background: white;
+            border-right: 2px solid #006837;
+            overflow-y: scroll;
+        }
+        h1 {
+            padding: 8px 15px 8px 15px;
+            margin: 0;
+            background: #006837;
+            width: 100%
+            font-weight: 350;
+            font-size: 1.2em;
+            text-align: center;
+            color: white; 
+        }
+        h2 {
+            margin: 0;
+            padding: 8px 15px 8px 15px;
+            color: #006837;
+            font-weight: 500;
+            font-size: 1.0em;
+            text-align: center;
+        }
+        #side-panel p {
+            margin: 8px 0 4px; 
+            padding: 0 25px 0 15px;
+            color: #3d3d3d;
+            text-align: left;
+            font-size: .75em; 
+        }
+        #side-panel p:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .info {
+            padding: 6px 8px;
+            font-size: 1em;
+            background: rgba(75,75,75,0.8);
+            color: white; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            text-align: right;   
+        }
+        .info h3 {
+            margin: 0;
+            color: #dddddd; 
+        }
+        #ui-controls .min {
+            float: left;   
+        }
+        #ui-controls .max {
+            float: right;
+            margin-right: -15px;
+        }
+        .year-slider {
+            width: 100%;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id='map'></div>
+    
+    <div id='side-panel'>
+    <h1>Monthly Agriculture Crop Calendar</h1>
+    <h2>Drought Exposure in Ethiopia</h2>
+    <p>TO BE FILLED IN</p>
+    <p>TO BE FILLED IN</p>
+    <h2>About this map</h2>
+    <p>TO BE FILLED IN</p>
+    <h2>About the data</h2>
+    <p>TO BE FILLED IN</p>
+    </div>
+    
+    <div id ='ui-controls'>
+        <label><span class="min">1</span><span class="max">12</span>
+        <input type = 'range' min = '1' max = '12' value = '1', step = '1' class = 'year-slider'> 
+    </div>
+    
+    <script>
+        
+         // instantiate the Leaflet map
+        var options = {
+            center: [9.15, 42.5],
+            zoom: 6,
+            minZoom: 4,
+            maxZoom: 10,
+            dragging: true,
+            zoomControl: true
+        }
+        var map = L.map('map', options);
+        
+        // load map tiles and add to map
+        var tiles = L.tileLayer('http://{s}.tile.stamen.com/toner-background/{z}/{x}/{y}.{ext}', {
+            attribution: 'Map tiles by <a href = "http://stamen.com">Stamen Design</a>, <a href = "http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href = "http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomains: 'abcd', 
+            minZoom: 4, 
+            maxZoom: 10, 
+            ext: 'png'
+        });
+        map.addLayer(tiles);
+        
+                
+        // declare global variables
+        var dataLayer,
+            attribute = 1;
+
+        // AJAX requests to load data files
+        
+        $.getJSON("ethiopia.json", function(regions) {
+
+            Papa.parse('eth-magic.csv', {
+
+                download: true,
+                header: true,
+                complete: function(data) {
+
+                    processData(regions, data); //call to function to process our csv and geometry data
+                }
+            }); // end of Papa.parse() 
+        });  // end of $.getJSON()
+ 
+        // function to process/bind data
+        
+        function processData(regions, data) { //define function after the previous call to it, pass regions and data as variables
+            
+           for(var region in regions.features) { //loop through features within all regions o the GeoJSON
+               
+                var props = regions.features[region].properties; //define variable for the regions' features so we don't have to write it multiple times
+               
+                for(d in data.data) { //for each region, loop through the csv data
+                  
+                   if(String(props.admin_id) === data.data[d].admin_id) { //match FIPS codes from GeoJSON and csv that are defined differently
+                      regions.features[region].properties = data.data[d]; //replace all regions properties with matching data properties
+                       break; //break out of inner loop to continue once a match is made
+                    }
+               } //end of inner loop
+               
+           } //end of outer loop
+            
+            drawLegend(); //call legend first
+            
+            drawMap(regions); //call to drawMap function
+            
+            createSliderUI(); 
+            
+            drawInfo();
+
+        }
+        
+        // function to draw the map
+        
+        function drawMap(regions) { //define function
+            
+            dataLayer = L.geoJson(regions, {
+                
+                style: function(feature){
+                    return {
+                        color: 'black', 
+                        weight: 1, 
+                        fillOpacity: 1,
+                        fillColor: '#1f78b4'
+                    }
+                }
+                
+            }).addTo(map);
+            
+            updateMap(); //call to update map
+                    
+        }
+        
+        // function to update the map
+        
+        function updateMap() { //define update map function
+            
+            var breaks = getClassBreaks();
+            
+            dataLayer.eachLayer(function(layer) {
+                layer.setStyle( { //set the style for each layer after looping through 
+                    fillColor: getColor(Number(layer.feature.properties[attribute]), breaks)
+                });
+            
+            layer.bindPopup("<b>"+layer.feature.properties["admin_name"]+" Region</br>" + attribute + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
+                
+                layer.on('mouseover', function() { // create mouseover event
+                    
+                    layer.setStyle({
+                       color: "yellow",
+                        weight: 4
+                    }); // set affordance stroke color to yellow when hovered over
+                    
+                    $('.info').show(); // shows the right hand display window when moused over
+                    updateInfo(layer);  // sends layer info to updateInfo function
+                    
+                });
+                
+                 layer.on('mouseout', function() {
+                    
+                    layer.setStyle({
+                       color: "black", 
+                        weight: 1
+                    }); // set stroke color back to grey when not hovered over
+                   
+                   $('.info').hide(); //  hides info window when not moused over
+                    
+                });
+                
+            });
+            
+            updateLegend(breaks); 
+        }
+        
+        // function get the class breaks   
+        function getClassBreaks() {
+            
+            var values = [];
+            
+            dataLayer.eachLayer(function(layer) {
+                var value = Number(layer.feature.properties[attribute]).toLocaleString();
+                values.push(value);
+                //console.log(value);
+            });
+            
+            var breaks = ss.quantile(values, [0, .2, 0.4, 0.6, 0.8, 1]);
+            
+            return breaks;
+            
+        }
+        
+        
+        // function to get the color value
+        function getColor(d, breaks) {
+            if(d <= breaks[1]) {
+                return '#ffffcc';
+            } else if(d <= breaks[2]) {
+                return '#c2e699';
+            } else if(d <= breaks[3]) {
+                return '#78c679'; 
+            } else if(d <= breaks[4]) {
+                return '#31a354'; 
+            } else if(d <= breaks[5]) {
+                return '#006837'
+            }
+            
+        }
+                
+        // function to draw the legend
+        function drawLegend() {
+            
+            var legend = L.control({position: 'topright'});
+
+            legend.onAdd = function(map) {
+                
+                var div = L.DomUtil.create('div', 'legend');
+               
+                return div; // return empty div element
+                      
+            };
+
+            legend.addTo(map);
+            
+        }
+        
+        // function to update the legend
+        function updateLegend(breaks) {
+            
+            var legend = $('.legend').html("<h3>Drought Exposure: " + attribute + "</h3><ul>"); // selects legend class, defines as a new variable 
+            
+            for (var i = 0; i < breaks.length-1; i++) {
+            
+                var color = getColor(breaks[i + 1], breaks);
+                $('.legend ul').append(
+                    '<li><span style="background:' + color +  '"></span> ' +
+                     breaks[i] + ' &mdash; ' + 
+                     breaks[i + 1] + '</li>');
+            }    
+            legend.append("</ul>");
+        }
+
+        // function to create the range slider
+        function createSliderUI() {
+            
+            // create a Leaflet control object and store a reference to it in a variable
+            var sliderControl = L.control({ position: 'bottomleft'} );
+
+            // when we add this control object to the map
+            sliderControl.onAdd = function(map) {
+
+                // select an existing DOM element with an id of "ui-controls"
+                var slider = L.DomUtil.get("ui-controls");
+
+                    // when the user clicks on the slider element
+                    L.DomEvent.addListener(slider, 'mousedown', function(e) { 
+
+                        // prevent the click event from bubbling up to the map
+                        L.DomEvent.stopPropagation(e); 
+
+                    });
+
+                // return the slider from the onAdd method
+                return slider;
+            }
+
+            // add the control object containing our slider element to the map
+            sliderControl.addTo(map); 
+            
+            $('.year-slider')
+                .on('input change', function () {
+                   attribute = $(this).val();
+                    updateMap();
+            }); 
+            
+        }
+        
+        function drawInfo() { //declare drawinfo function
+            
+            var info = L.control( {position: 'bottomright'} ); // define variable that uses leaflet controls to position the new info window in the topright 
+            
+            info.onAdd = function(map) {
+                
+                var div = L.DomUtil.create('div', 'info'); // create new div element of class info
+                
+                return div; 
+            }
+            
+            info.addTo(map); 
+            
+            $('.info').hide(); // use hide method so that the right hand info window is not displayed when you're not hovering over a county
+            
+        }
+        
+        function updateInfo(layer) { //define updateInfo function
+            
+            var props = layer.feature.properties;
+
+            var html = "<h3><b>"+props["admin_name"]+" Region</b></br>" + "January" + ": " + props["1"].toLocaleString() + 
+                "</br>February" + ": " + props["2"].toLocaleString() + 
+                "</br>March" + ": " + props["3"].toLocaleString() + 
+                "</br>April" + ": " + props["4"].toLocaleString() + 
+                "</br>May" + ": " + props["5"].toLocaleString() + 
+                "</br>June" + ": " + props["6"].toLocaleString() + 
+                "</br>July" + ": " + props["7"].toLocaleString() + 
+                "</br>August" + ": " + props["8"].toLocaleString() + 
+                "</br>September" + ": " + props["9"].toLocaleString() + 
+                "</br>October" + ": " + props["10"].toLocaleString() + 
+                "</br>November" + ": " + props["11"].toLocaleString() + 
+                "</br>December" + ": " + props["12"].toLocaleString(); // creates string with unemployment info
+
+            $(".info").html(html); // selecting something with class of info, use html method to select html string for each county we're mousing over
+        }
+
+
+    </script>
+    
+</body>
+
+</html>
