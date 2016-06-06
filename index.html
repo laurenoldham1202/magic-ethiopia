@@ -43,7 +43,7 @@
             padding: 6px 8px;
             font-size: 1em;
             background: rgba(75,75,75,0.8);
-            color: white;
+            color: whitesmoke;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             border-radius: 5px;
             width: 160px;
@@ -52,7 +52,7 @@
             font-size: 1.1em;
             font-weight: bold;
             line-height: 1em;
-            color: white;
+            color: whitesmoke;
             margin: 0;
         }
         .legend li {
@@ -71,7 +71,7 @@
             background: rgba(75,75,75,0.8);
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             border-radius: 5px; 
-            color: white;
+            color: whitesmoke;
         }
         .year-slider {
             width: 100%;
@@ -83,24 +83,24 @@
             top: 0;
             bottom: 0;
             width: 33%;
-            background: white;
-            border-right: 2px solid #006837;
+            background: black;
+            border-left: 2px solid #bd0026;
             overflow-y: scroll;
         }
         h1 {
             padding: 8px 15px 8px 15px;
             margin: 0;
-            background: #006837;
+            background: #bd0026;
             width: 100%
             font-weight: 350;
             font-size: 1.2em;
             text-align: center;
-            color: white; 
+            color: black; 
         }
         h2 {
             margin: 0;
             padding: 8px 15px 8px 15px;
-            color: #006837;
+            color: whitesmoke;
             font-weight: 500;
             font-size: 1.0em;
             text-align: center;
@@ -108,7 +108,7 @@
         #side-panel p {
             margin: 8px 0 4px; 
             padding: 0 25px 0 15px;
-            color: #3d3d3d;
+            color: #A1A1A1;
             text-align: left;
             font-size: .75em; 
         }
@@ -121,7 +121,7 @@
             padding: 6px 8px;
             font-size: 1em;
             background: rgba(75,75,75,0.8);
-            color: white; 
+            color: #016c59; 
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             border-radius: 5px;
             text-align: right;   
@@ -141,6 +141,18 @@
             width: 100%;
         }
         
+        ul {
+            color: #A1A1A1;
+        }
+/*
+        ul {
+          columns: 2;
+          -webkit-columns: 2;
+          -moz-columns: 2;
+        }
+*/
+        
+        
     </style>
 </head>
 
@@ -148,14 +160,47 @@
     <div id='map'></div>
     
     <div id='side-panel'>
-    <h1>Monthly Agriculture Crop Calendar</h1>
+    <h1>Monthly Agriculture Insurance Calendar</h1>
     <h2>Drought Exposure in Ethiopia</h2>
     <p>TO BE FILLED IN</p>
-    <p>TO BE FILLED IN</p>
     <h2>About this map</h2>
-    <p>TO BE FILLED IN</p>
+    <p>The Monthly Agriculture Insurance Calendar was created by GlobalAgRisk, Inc. as a food security tool for developing nations. </p>
+    <p>While many food security tools already exist, MAgIC is unique in its breadth of focus. Instead of focusing only on the most prominent/"important" crop in a country or region, we have included weighted measures for 25 different crops:</p>
+        
+        <div><ul class = "columns" data-columns = "2">
+            <li type = "square">Barley</li>
+            <li type = "square">Cabbage</li>
+            <li type = "square">Carrot</li>
+            <li type = "square">Chickpea</li>
+            <li type = "square">Cowpea</li>
+            <li type = "square">Cotton</li>
+            <li type = "square">Groundnut</li>
+            <li type = "square">Maize</li>
+            <li type = "square">Millet</li>
+            <li type = "square">Oat</li>
+            <li type = "square">Onion</li>
+            <li type = "square">Pigeonpea</li>
+            <li type = "square">Rapeseed</li>
+            <li type = "square">Rye</li>
+            <li type = "square">Sorghum</li>
+            <li type = "square">Soybean</li>
+            <li type = "square">Sugarbeet</li>
+            <li type = "square">Sunflower</li>
+            <li type = "square">Sweet Potato</li>
+            <li type = "square">Tobacco</li>
+            <li type = "square">Tomato</li>
+            <li type = "square">Wetland Rice</li>
+            <li type = "square">Wheat</li>
+            <li type = "square">White Potato</li>
+            <li type = "square">Yam</li>
+        </ul></div>
     <h2>About the data</h2>
-    <p>TO BE FILLED IN</p>
+    <p>Data for crop start days were developed and provided by <a href = "http://gaez.fao.org/Main.html?ticket=ST-96803-5jRRY5f76WfbfJSJ6hXj-cas#">Global Agro-Ecological Zones (GAEZ)</a> under the Food and Agriculture Organization (FAO) and the International Institute for Applied Systems Analysis (IIASA). Crop Production data were gathered and provided by <a href = "http://www.earthstat.org/data-download/">EarthStat</a> from the University of Minnesota Institute on the Environment. Crop stage/yield response factor data were also provided by FAO, as well as Heinemann, et. al. (2009). </p> 
+    <p>Rice Growth Stages: Heinemann, A.B.; Stone, L.F.; Silva, S.C. da. Arroz. In: Monteiro, J.E.B.A. (Ed.). Agrometeorologia dos cultivos: o fator meteorológico na produção agrícola. Brasília: Instituto Nacional de Meteorologia, 2009. p.63‑79.
+    <p>Other Crop Growth Stages: Brouwer, C. and M. Heibloem, Irrigation Water Management Training Manual no. 3: Irrigation Water Needs (Rome: Food and Agricultural Organization, 1986), available from http://www.fao.org/docrep/s2022e/s2022e07.htm#chapter 3: crop water needs</p>
+    <p>Yield Response to Water: Doorenbos, J., and A. H. Kassam. "Yield response to water." Irrigation and drainage paper 33 (Rome: FAO, 1979), available from http://203.200.22.249:8080/jspui/bitstream/2014/11987/1/
+        Yield_response_to_water.pdf.</p>
+</p>
     </div>
     
     <div id ='ui-controls'>
@@ -177,12 +222,10 @@
         var map = L.map('map', options);
         
         // load map tiles and add to map
-        var tiles = L.tileLayer('http://{s}.tile.stamen.com/toner-background/{z}/{x}/{y}.{ext}', {
-            attribution: 'Map tiles by <a href = "http://stamen.com">Stamen Design</a>, <a href = "http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href = "http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            subdomains: 'abcd', 
-            minZoom: 4, 
-            maxZoom: 10, 
-            ext: 'png'
+        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
         });
         map.addLayer(tiles);
         
@@ -192,7 +235,6 @@
             attribute = 1;
 
         // AJAX requests to load data files
-        
         $.getJSON("ethiopia.json", function(regions) {
 
             Papa.parse('eth-magic.csv', {
@@ -309,6 +351,8 @@
             
             var breaks = ss.quantile(values, [0, .2, 0.4, 0.6, 0.8, 1]);
             
+            //var breaks = [0, 0.6, 1.2, 1.8, 2.4, 3]
+            
             return breaks;
             
         }
@@ -317,15 +361,15 @@
         // function to get the color value
         function getColor(d, breaks) {
             if(d <= breaks[1]) {
-                return '#ffffcc';
+                return '#ffffb2';
             } else if(d <= breaks[2]) {
-                return '#c2e699';
+                return '#fecc5c';
             } else if(d <= breaks[3]) {
-                return '#78c679'; 
+                return '#fd8d3c'; 
             } else if(d <= breaks[4]) {
-                return '#31a354'; 
+                return '#f03b20'; 
             } else if(d <= breaks[5]) {
-                return '#006837'
+                return '#bd0026'
             }
             
         }
