@@ -42,39 +42,44 @@
         .legend {
             padding: 6px 8px;
             font-size: 1em;
-            background: rgba(75,75,75,0.8);
-            color: whitesmoke;
+            background: #3F3250;
+            color: #C0B3A0; 
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             border-radius: 5px;
-            width: 160px;
+            width: 145px;
+            border: 2px solid #E14658;
+            border-radius: 5px; 
         }
         .legend h3 {
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
             line-height: 1em;
-            color: whitesmoke;
+            color: #C0B3A0;
             margin: 0;
         }
         .legend li {
             list-style-type: none;
             height: 22px;
+            color: #C0B3A0;
+            font-size: .85em;
         }
         .legend span {
             width: 30px;
             height: 20px;
             float: left;
-            margin-right: 10px;
+            margin-right: 5px;
         }
         #ui-controls {
             width: 186px;   
             padding: 8px 25px 8px 15px;
-            background: rgba(75,75,75,0.8);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            background: #3F3250;
+            border: 2px solid #E14658;
             border-radius: 5px; 
-            color: whitesmoke;
+            color: #C0B3A0;
         }
         .year-slider {
             width: 100%;
+            color: #3F3250; 
         }
         #side-panel {
             position: absolute;
@@ -83,24 +88,25 @@
             top: 0;
             bottom: 0;
             width: 33%;
-            background: black;
-            border-left: 2px solid #bd0026;
+            background: #C0B3A0;
+            border-left: 2px solid #E14658;
             overflow-y: scroll;
         }
         h1 {
             padding: 8px 15px 8px 15px;
             margin: 0;
-            background: #bd0026;
+            background: #3F3250;
             width: 100%
             font-weight: 350;
             font-size: 1.2em;
             text-align: center;
-            color: black; 
+            color: #E14658;
+            border-bottom: 10px solid #E14658;
         }
         h2 {
             margin: 0;
             padding: 8px 15px 8px 15px;
-            color: whitesmoke;
+            color: #E14658;
             font-weight: 500;
             font-size: 1.0em;
             text-align: center;
@@ -108,7 +114,7 @@
         #side-panel p {
             margin: 8px 0 4px; 
             padding: 0 25px 0 15px;
-            color: #A1A1A1;
+            color: #22252C;
             text-align: left;
             font-size: .75em; 
         }
@@ -120,15 +126,15 @@
         .info {
             padding: 6px 8px;
             font-size: 1em;
-            background: rgba(75,75,75,0.8);
-            color: #016c59; 
+            background: #3F3250;
+            color: #C0B3A0; 
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             border-radius: 5px;
-            text-align: right;   
+            text-align: left;   
         }
         .info h3 {
             margin: 0;
-            color: #dddddd; 
+            color: #E14658; 
         }
         #ui-controls .min {
             float: left;   
@@ -141,18 +147,11 @@
             width: 100%;
         }
         
-        ul {
-            color: #A1A1A1;
+        #list {
+            color: #22252C;
+            font-size: .75em;
+            columns: 2; 
         }
-/*
-        ul {
-          columns: 2;
-          -webkit-columns: 2;
-          -moz-columns: 2;
-        }
-*/
-        
-        
     </style>
 </head>
 
@@ -162,12 +161,11 @@
     <div id='side-panel'>
     <h1>Monthly Agriculture Insurance Calendar</h1>
     <h2>Drought Exposure in Ethiopia</h2>
-    <p>TO BE FILLED IN</p>
     <h2>About this map</h2>
     <p>The Monthly Agriculture Insurance Calendar was created by GlobalAgRisk, Inc. as a food security tool for developing nations. </p>
-    <p>While many food security tools already exist, MAgIC is unique in its breadth of focus. Instead of focusing only on the most prominent/"important" crop in a country or region, we have included weighted measures for 25 different crops:</p>
+    <p>MAgIC works by attempting to determine when a country's crops are most vulnerable to drought. While many food security tools already exist, MAgIC is unique in its breadth of focus. Instead of focusing only on the most prominent/"important" crop in a country or region, we have included weighted measures for 25 different crops, listed below:</p>
         
-        <div><ul class = "columns" data-columns = "2">
+        <div id = 'list'><ul class = "columns" data-columns = "2">
             <li type = "square">Barley</li>
             <li type = "square">Cabbage</li>
             <li type = "square">Carrot</li>
@@ -194,17 +192,20 @@
             <li type = "square">White Potato</li>
             <li type = "square">Yam</li>
         </ul></div>
+    <p>Crops were in part chosen based on data availability. To try to keep our focus on small subsistence farming, the 25 crops were filtered as low-input and rain-fed (rather than irrigated).</p>
+    <p>For each of the above crops, we created a baseline crop calendar that defines various stages of plant development throughout the year for each administrative unit in Ethiopia. These crop calendars were created by projecting different stages of crop development from planting season start days. Each stage of crop development (initial stage, development stage, mid-season stage, and late stage) corresponds to a <i>yield response factor</i>, which is an FAO measure that represents how a reduction in water impacts yield losses. A higher yield response factor corresponds to a higher drought exposure. The resultant calendars show a relative measure of drought exposure for each of the 25 crops within an administrative unit. These calendars were combined and weighted with raw crop production values and subsequently normalized to yield the final Monthly Agriculture Insurance Calendar. </p>
     <h2>About the data</h2>
     <p>Data for crop start days were developed and provided by <a href = "http://gaez.fao.org/Main.html?ticket=ST-96803-5jRRY5f76WfbfJSJ6hXj-cas#">Global Agro-Ecological Zones (GAEZ)</a> under the Food and Agriculture Organization (FAO) and the International Institute for Applied Systems Analysis (IIASA). Crop Production data were gathered and provided by <a href = "http://www.earthstat.org/data-download/">EarthStat</a> from the University of Minnesota Institute on the Environment. Crop stage/yield response factor data were also provided by FAO, as well as Heinemann, et. al. (2009). </p> 
     <p>Rice Growth Stages: Heinemann, A.B.; Stone, L.F.; Silva, S.C. da. Arroz. In: Monteiro, J.E.B.A. (Ed.). Agrometeorologia dos cultivos: o fator meteorológico na produção agrícola. Brasília: Instituto Nacional de Meteorologia, 2009. p.63‑79.
     <p>Other Crop Growth Stages: Brouwer, C. and M. Heibloem, Irrigation Water Management Training Manual no. 3: Irrigation Water Needs (Rome: Food and Agricultural Organization, 1986), available from http://www.fao.org/docrep/s2022e/s2022e07.htm#chapter 3: crop water needs</p>
     <p>Yield Response to Water: Doorenbos, J., and A. H. Kassam. "Yield response to water." Irrigation and drainage paper 33 (Rome: FAO, 1979), available from http://203.200.22.249:8080/jspui/bitstream/2014/11987/1/
         Yield_response_to_water.pdf.</p>
+    <p>Monthly Agriculture Insurance Calendar: Developed by GlobalAgRisk, Inc. with James Allen, Nathan Arnold, Jason Hartell, Jerzy Jaromczyk, Lauren Oldham, and Jerry Skees.</p>
 </p>
     </div>
     
     <div id ='ui-controls'>
-        <label><span class="min">1</span><span class="max">12</span>
+        <label><span class="min">January</span><span class="max">December</span>
         <input type = 'range' min = '1' max = '12' value = '1', step = '1' class = 'year-slider'> 
     </div>
     
@@ -212,7 +213,7 @@
         
          // instantiate the Leaflet map
         var options = {
-            center: [9.15, 42.5],
+            center: [8.95, 42.5],
             zoom: 6,
             minZoom: 4,
             maxZoom: 10,
@@ -244,8 +245,11 @@
                 complete: function(data) {
 
                     processData(regions, data); //call to function to process our csv and geometry data
+                    
                 }
+                
             }); // end of Papa.parse() 
+            
         });  // end of $.getJSON()
  
         // function to process/bind data
@@ -314,11 +318,14 @@
                     
                     layer.setStyle({
                        color: "yellow",
-                        weight: 4
+                        weight: 3, 
+                        opacity: .9, 
+                        stroke: true
                     }); // set affordance stroke color to yellow when hovered over
                     
                     $('.info').show(); // shows the right hand display window when moused over
                     updateInfo(layer);  // sends layer info to updateInfo function
+                    layer.bringToFront();
                     
                 });
                 
@@ -354,22 +361,22 @@
             //var breaks = [0, 0.6, 1.2, 1.8, 2.4, 3]
             
             return breaks;
-            
+                        
         }
         
         
         // function to get the color value
         function getColor(d, breaks) {
             if(d <= breaks[1]) {
-                return '#ffffb2';
+                return '#fef0d9';
             } else if(d <= breaks[2]) {
-                return '#fecc5c';
+                return '#fdcc8a';
             } else if(d <= breaks[3]) {
-                return '#fd8d3c'; 
+                return '#fc8d59'; 
             } else if(d <= breaks[4]) {
-                return '#f03b20'; 
+                return '#e34a33'; 
             } else if(d <= breaks[5]) {
-                return '#bd0026'
+                return '#b30000'
             }
             
         }
@@ -444,7 +451,7 @@
         
         function drawInfo() { //declare drawinfo function
             
-            var info = L.control( {position: 'bottomright'} ); // define variable that uses leaflet controls to position the new info window in the topright 
+            var info = L.control( {position: 'bottomright'} ); // define variable that uses leaflet controls to position the new info window in the bottom right 
             
             info.onAdd = function(map) {
                 
@@ -463,18 +470,18 @@
             
             var props = layer.feature.properties;
 
-            var html = "<h3><b>"+props["admin_name"]+" Region</b></br>" + "January" + ": " + props["1"].toLocaleString() + 
-                "</br>February" + ": " + props["2"].toLocaleString() + 
-                "</br>March" + ": " + props["3"].toLocaleString() + 
-                "</br>April" + ": " + props["4"].toLocaleString() + 
-                "</br>May" + ": " + props["5"].toLocaleString() + 
-                "</br>June" + ": " + props["6"].toLocaleString() + 
-                "</br>July" + ": " + props["7"].toLocaleString() + 
-                "</br>August" + ": " + props["8"].toLocaleString() + 
-                "</br>September" + ": " + props["9"].toLocaleString() + 
-                "</br>October" + ": " + props["10"].toLocaleString() + 
-                "</br>November" + ": " + props["11"].toLocaleString() + 
-                "</br>December" + ": " + props["12"].toLocaleString(); // creates string with unemployment info
+            var html = "<h3><b>"+props["admin_name"]+" Region</b></h3></br>" + "<b>January</b>" + ": " + props["1"].toLocaleString() + 
+                "</br><b>February</b>" + ": " + props["2"].toLocaleString() + 
+                "</br><b>March</b>" + ": " + props["3"].toLocaleString() + 
+                "</br><b>April</b>" + ": " + props["4"].toLocaleString() + 
+                "</br><b>May</b>" + ": " + props["5"].toLocaleString() + 
+                "</br><b>June</b>" + ": " + props["6"].toLocaleString() + 
+                "</br><b>July</b>" + ": " + props["7"].toLocaleString() + 
+                "</br><b>August</b>" + ": " + props["8"].toLocaleString() + 
+                "</br><b>September</b>" + ": " + props["9"].toLocaleString() + 
+                "</br><b>October</b>" + ": " + props["10"].toLocaleString() + 
+                "</br><b>November</b>" + ": " + props["11"].toLocaleString() + 
+                "</br><b>December</b>" + ": " + props["12"].toLocaleString(); // creates string with unemployment info
 
             $(".info").html(html); // selecting something with class of info, use html method to select html string for each county we're mousing over
         }
