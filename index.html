@@ -351,7 +351,7 @@
             var values = [];
             
             dataLayer.eachLayer(function(layer) {
-                var value = Number(layer.feature.properties[attribute]).toLocaleString();
+                var value = Number(layer.feature.properties[attribute]);
                 values.push(value);
                 //console.log(value);
             });
@@ -408,8 +408,8 @@
                 var color = getColor(breaks[i + 1], breaks);
                 $('.legend ul').append(
                     '<li><span style="background:' + color +  '"></span> ' +
-                     breaks[i] + ' &mdash; ' + 
-                     breaks[i + 1] + '</li>');
+                     breaks[i].toLocaleString() + ' &mdash; ' + 
+                     breaks[i + 1].toLocaleString() + '</li>');
             }    
             legend.append("</ul>");
         }
