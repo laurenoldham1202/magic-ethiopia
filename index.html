@@ -57,6 +57,10 @@
             color: #C0B3A0;
             margin: 0;
         }
+        .legend ul {
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
         .legend li {
             list-style-type: none;
             height: 22px;
@@ -309,12 +313,14 @@
         
         function updateMap(breaks) { //define update map function
             
+            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
             dataLayer.eachLayer(function(layer) {
                 layer.setStyle( { //set the style for each layer after looping through 
                     fillColor: getColor(Number(layer.feature.properties[attribute]), breaks)
                 });
             
-            layer.bindPopup("<b>"+layer.feature.properties["admin_name"]+" Region</br>" + attribute + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
+            layer.bindPopup("<b>"+layer.feature.properties["admin_name"]+" Region</br>" + monthNames[Number(attribute)-1] + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
                 
                 layer.on('mouseover', function() { // create mouseover event
                     
@@ -400,9 +406,8 @@
             };
 
             legend.addTo(map);
-            
-            
-                        
+
+                  
             var legend = $('.legend').html("<h3>Drought Exposure: " + attribute + "</h3><ul>"); // selects legend class, defines as a new variable 
             
             for (var i = 0; i < breaks.length-1; i++) {
