@@ -57,6 +57,10 @@
             color: #C0B3A0;
             margin: 0;
         }
+        .legend ul {
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
         .legend li {
             list-style-type: none;
             height: 22px;
@@ -233,7 +237,7 @@
                 
         // declare global variables
         var dataLayer,
-            attribute = 1;
+            attribute = '1';
 
         // AJAX requests to load data files
         $.getJSON("ethiopia.json", function(regions) {
@@ -270,11 +274,9 @@
                
            } //end of outer loop
             
-            drawLegend(); //call legend first
+           
             
             drawMap(regions); //call to drawMap function
-            
-            createSliderUI(); 
             
             drawInfo();
 
@@ -297,22 +299,28 @@
                 
             }).addTo(map);
             
-            updateMap(); //call to update map
+            var breaks = getClassBreaks();
+            
+            drawLegend(breaks); //call legend first
+            
+            updateMap(breaks); //call to update map
+            
+            createSliderUI(breaks); 
                     
         }
         
         // function to update the map
         
-        function updateMap() { //define update map function
+        function updateMap(breaks) { //define update map function
             
-            var breaks = getClassBreaks();
+            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             
             dataLayer.eachLayer(function(layer) {
                 layer.setStyle( { //set the style for each layer after looping through 
                     fillColor: getColor(Number(layer.feature.properties[attribute]), breaks)
                 });
             
-            layer.bindPopup("<b>"+layer.feature.properties["admin_name"]+" Region</br>" + attribute + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
+            layer.bindPopup("<b>"+layer.feature.properties["admin_name"]+" Region</br>" + monthNames[Number(attribute)-1] + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
                 
                 layer.on('mouseover', function() { // create mouseover event
                     
@@ -340,9 +348,7 @@
                     
                 });
                 
-            });
-            
-            updateLegend(breaks); 
+            }); 
         }
         
         // function get the class breaks   
@@ -350,11 +356,16 @@
             
             var values = [];
             
-            dataLayer.eachLayer(function(layer) {
-                var value = Number(layer.feature.properties[attribute]).toLocaleString();
+            // for all the attribute columns
+            for(var i = 1; i <= 12; i++) {
+                
+                dataLayer.eachLayer(function(layer) {
+                var value = Number(layer.feature.properties[i]);
                 values.push(value);
                 //console.log(value);
             });
+            }
+  
             
             var breaks = ss.quantile(values, [0, .2, 0.4, 0.6, 0.8, 1]);
             
@@ -382,7 +393,7 @@
         }
                 
         // function to draw the legend
-        function drawLegend() {
+        function drawLegend(breaks) {
             
             var legend = L.control({position: 'topright'});
 
@@ -395,12 +406,8 @@
             };
 
             legend.addTo(map);
-            
-        }
-        
-        // function to update the legend
-        function updateLegend(breaks) {
-            
+
+                  
             var legend = $('.legend').html("<h3>Drought Exposure: " + attribute + "</h3><ul>"); // selects legend class, defines as a new variable 
             
             for (var i = 0; i < breaks.length-1; i++) {
@@ -408,14 +415,16 @@
                 var color = getColor(breaks[i + 1], breaks);
                 $('.legend ul').append(
                     '<li><span style="background:' + color +  '"></span> ' +
-                     breaks[i] + ' &mdash; ' + 
-                     breaks[i + 1] + '</li>');
+                     breaks[i].toLocaleString() + ' &mdash; ' + 
+                     breaks[i + 1].toLocaleString() + '</li>');
             }    
             legend.append("</ul>");
+            
         }
+        
 
         // function to create the range slider
-        function createSliderUI() {
+        function createSliderUI(breaks) {
             
             // create a Leaflet control object and store a reference to it in a variable
             var sliderControl = L.control({ position: 'bottomleft'} );
@@ -444,7 +453,7 @@
             $('.year-slider')
                 .on('input change', function () {
                    attribute = $(this).val();
-                    updateMap();
+                   updateMap(breaks);
             }); 
             
         }
