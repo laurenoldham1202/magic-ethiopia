@@ -274,8 +274,6 @@
                
            } //end of outer loop
             
-           
-            
             drawMap(regions); //call to drawMap function
             
             drawInfo();
@@ -301,7 +299,7 @@
             
             var breaks = getClassBreaks();
             
-            //drawLegend(breaks); //call legend first
+            drawLegend(breaks); //call legend first
                         
             updateMap(breaks); //call to update map
             
@@ -350,7 +348,7 @@
                 
             }); 
             
-            drawLegend(breaks); //call legend first
+            //drawLegend(breaks); //call legend first
 
         }
         
