@@ -53,7 +53,7 @@
         .legend h3 {
             font-size: 1em;
             font-weight: bold;
-            line-height: 1em;
+            line-height: 1.3em;
             color: #C0B3A0;
             margin: 0;
         }
@@ -450,10 +450,13 @@
             // add the control object containing our slider element to the map
             sliderControl.addTo(map); 
             
+             var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
             $('.year-slider')
                 .on('input change', function () {
                    attribute = $(this).val();
                    updateMap(breaks);
+                $('.legend h3').html('Drought Exposure: <br>'+ monthNames[attribute-1])
             }); 
             
         }
