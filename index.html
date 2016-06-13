@@ -105,7 +105,6 @@
             font-size: 1.2em;
             text-align: center;
             color: #E14658;
-            border-bottom: 10px solid #E14658;
         }
         h2 {
             margin: 0;
@@ -114,6 +113,17 @@
             font-weight: 500;
             font-size: 1.0em;
             text-align: center;
+        }
+        h4 {
+            padding: 8px 15px 8px 15px;
+            margin: 0;
+            background: #3F3250;
+            width: 100%
+            font-weight: 250;
+            font-size: 1em;
+            text-align: center;
+            color: #E14658;
+            border-bottom: 10px solid #E14658;
         }
         #side-panel p {
             margin: 8px 0 4px; 
@@ -126,6 +136,10 @@
             content: '';
             display: block;
             clear: both;
+        }
+        #side-panel img {
+            float: center;
+            width: 100%;
         }
         .info {
             padding: 6px 8px;
@@ -164,10 +178,12 @@
     
     <div id='side-panel'>
     <h1>Monthly Agriculture Insurance Calendar</h1>
-    <h2>Drought Exposure in Ethiopia</h2>
-    <h2>About this map</h2>
-    <p>The Monthly Agriculture Insurance Calendar was created by GlobalAgRisk, Inc. as a food security tool for developing nations. </p>
-    <p>MAgIC works by attempting to determine when a country's crops are most vulnerable to drought. While many food security tools already exist, MAgIC is unique in its breadth of focus. Instead of focusing only on the most prominent/"important" crop in a country or region, we have included weighted measures for 25 different crops, listed below:</p>
+    <h4>Drought Exposure in Ethiopia</h4>
+    <h2>Reading this Map</h2>
+        <p>This map displays the drought exposure for each adminsitrative region in Ethiopia for each month of the year. Each region's drought exposure proportions for the year sum to 1. Scrolling through the slider on the bottom left of the map scrolls through each month of the year; this month is displayed in the legend title. Clicking on each region reveals its drought exposure proportion for the selected month. Hovering over each region displays an info window that shows the drought exposure proportions for each month.</p>
+    <h2>About MAgIC</h2>
+        <p>The Monthly Agriculture Insurance Calendar (MAgIC) was created by GlobalAgRisk, Inc. as a food security tool for developing nations. It could potentially be used as a tool to help farmers choose when to insure themselves against crop failure in times of drought.</p>
+        <p>MAgIC works by attempting to determine when a country's crops are most vulnerable to drought. While many food security tools already exist, MAgIC is unique in its breadth of focus. Instead of focusing only on the most prominent/"important" crop in a country or region, we have included weighted measures for 25 different crops, listed below:</p>
         
         <div id = 'list'><ul class = "columns" data-columns = "2">
             <li type = "square">Barley</li>
@@ -196,15 +212,17 @@
             <li type = "square">White Potato</li>
             <li type = "square">Yam</li>
         </ul></div>
-    <p>Crops were in part chosen based on data availability. To try to keep our focus on small subsistence farming, the 25 crops were filtered as low-input and rain-fed (rather than irrigated).</p>
-    <p>For each of the above crops, we created a baseline crop calendar that defines various stages of plant development throughout the year for each administrative unit in Ethiopia. These crop calendars were created by projecting different stages of crop development from planting season start days. Each stage of crop development (initial stage, development stage, mid-season stage, and late stage) corresponds to a <i>yield response factor</i>, which is an FAO measure that represents how a reduction in water impacts yield losses. A higher yield response factor corresponds to a higher drought exposure. The resultant calendars show a relative measure of drought exposure for each of the 25 crops within an administrative unit. These calendars were combined and weighted with raw crop production values and subsequently normalized to yield the final Monthly Agriculture Insurance Calendar. </p>
+        <p>Crops were in part chosen based on data availability. To try to keep our focus on small subsistence farming, the 25 crops were filtered as low-input and rain-fed (rather than irrigated).</p>
+        <p>For each of the above crops, we created a baseline crop calendar that defines various stages of plant development throughout the year for each administrative unit in Ethiopia. These crop calendars were created by projecting different stages of crop development from planting season start days. Each stage of crop development (initial stage, development stage, mid-season stage, and late stage) corresponds to a <i>yield response factor</i>, which is an FAO measure that represents how a reduction in water impacts yield losses. A higher yield response factor corresponds to a higher drought exposure. The resultant calendars show a relative measure of drought exposure for each of the 25 crops within an administrative unit. These calendars were combined and weighted with raw crop production values and subsequently normalized to yield the final Monthly Agriculture Insurance Calendar. </p>
+        <p>MAgIC clearly shows the distribution of drought exposure in Ethiopia. Winter and spring months (approximately November-March) have the least drought exposure, whereas summer and autumn are much more prone to drought. While MaGIC can be displayed graphically, as it is below, mapping drought exposure is important to ascertain its <b>spatial distribution</b>.</p>
+        <p><img src="images/eth-cc.png" alt="legend"></p>
     <h2>About the data</h2>
-    <p>Data for crop start days were developed and provided by <a href = "http://gaez.fao.org/Main.html?ticket=ST-96803-5jRRY5f76WfbfJSJ6hXj-cas#">Global Agro-Ecological Zones (GAEZ)</a> under the Food and Agriculture Organization (FAO) and the International Institute for Applied Systems Analysis (IIASA). Crop Production data were gathered and provided by <a href = "http://www.earthstat.org/data-download/">EarthStat</a> from the University of Minnesota Institute on the Environment. Crop stage/yield response factor data were also provided by FAO, as well as Heinemann, et. al. (2009). </p> 
-    <p>Rice Growth Stages: Heinemann, A.B.; Stone, L.F.; Silva, S.C. da. Arroz. In: Monteiro, J.E.B.A. (Ed.). Agrometeorologia dos cultivos: o fator meteorológico na produção agrícola. Brasília: Instituto Nacional de Meteorologia, 2009. p.63‑79.
-    <p>Other Crop Growth Stages: Brouwer, C. and M. Heibloem, Irrigation Water Management Training Manual no. 3: Irrigation Water Needs (Rome: Food and Agricultural Organization, 1986), available from http://www.fao.org/docrep/s2022e/s2022e07.htm#chapter 3: crop water needs</p>
-    <p>Yield Response to Water: Doorenbos, J., and A. H. Kassam. "Yield response to water." Irrigation and drainage paper 33 (Rome: FAO, 1979), available from http://203.200.22.249:8080/jspui/bitstream/2014/11987/1/
-        Yield_response_to_water.pdf.</p>
-    <p>Monthly Agriculture Insurance Calendar: Developed by GlobalAgRisk, Inc. with James Allen, Nathan Arnold, Jason Hartell, Jerzy Jaromczyk, Lauren Oldham, and Jerry Skees.</p>
+        <p>Data for crop start days were developed and provided by <a href = "http://gaez.fao.org/Main.html?ticket=ST-96803-5jRRY5f76WfbfJSJ6hXj-cas#">Global Agro-Ecological Zones (GAEZ)</a> under the Food and Agriculture Organization (FAO) and the International Institute for Applied Systems Analysis (IIASA). Crop Production data were gathered and provided by <a href = "http://www.earthstat.org/data-download/">EarthStat</a> from the University of Minnesota Institute on the Environment. Crop stage/yield response factor data were also provided by FAO, as well as Heinemann, et. al. (2009). </p> 
+        <p>Rice Growth Stages: Heinemann, A.B.; Stone, L.F.; Silva, S.C. da. Arroz. In: Monteiro, J.E.B.A. (Ed.). Agrometeorologia dos cultivos: o fator meteorológico na produção agrícola. Brasília: Instituto Nacional de Meteorologia, 2009. p.63‑79.
+        <p>Other Crop Growth Stages: Brouwer, C. and M. Heibloem, Irrigation Water Management Training Manual no. 3: Irrigation Water Needs (Rome: Food and Agricultural Organization, 1986), available from http://www.fao.org/docrep/s2022e/s2022e07.htm#chapter 3: crop water needs</p>
+        <p>Yield Response to Water: Doorenbos, J., and A. H. Kassam. "Yield response to water." Irrigation and drainage paper 33 (Rome: FAO, 1979), available from http://203.200.22.249:8080/jspui/bitstream/2014/11987/1/
+            Yield_response_to_water.pdf.</p>
+        <p>Monthly Agriculture Insurance Calendar: Developed by GlobalAgRisk, Inc. with James Allen, Nathan Arnold, Jason Hartell, Jerzy Jaromczyk, Lauren Oldham, and Jerry Skees.</p>
 </p>
     </div>
     
@@ -323,7 +341,7 @@
                 layer.on('mouseover', function() { // create mouseover event
                     
                     layer.setStyle({
-                       color: "yellow",
+                       color: "#E600FF",
                         weight: 3, 
                         opacity: .9, 
                         stroke: true
@@ -368,7 +386,9 @@
             }
   
             var breaks = ss.quantile(values, [0, .2, 0.4, 0.6, 0.8, 1]);
-                        
+              
+            //var breaks = [0, 0.06, 0.12, 0.18, 0.24, 0.3]
+            
             return breaks;
                         
         }
