@@ -215,8 +215,8 @@
         </ul></div>
         <p>Crops were in part chosen based on data availability. To try to keep our focus on small subsistence farming, the 25 crops were filtered as low-input and rain-fed (rather than irrigated).</p>
         <p>For each of the above crops, we created a baseline crop calendar that defines various stages of plant development throughout the year for each administrative unit in Ethiopia. These crop calendars were created by projecting different stages of crop development from planting season start days. Each stage of crop development (initial stage, development stage, mid-season stage, and late stage) corresponds to a <i>yield response factor</i>, which is an FAO measure that represents how a reduction in water impacts yield losses. A higher yield response factor corresponds to a higher drought exposure. The resultant calendars show a relative measure of drought exposure for each of the 25 crops within an administrative unit. These calendars were combined and weighted with raw crop production values and subsequently normalized to yield the final Monthly Agriculture Insurance Calendar. </p>
-        <p>MAgIC clearly shows the distribution of drought exposure in Ethiopia. Winter and spring months (approximately November-March) have the least drought exposure, whereas summer and autumn are much more prone to drought. While MAgIC can be displayed graphically, as it is below, mapping drought exposure is important to ascertain its <b>spatial distribution</b>.</p>
-        <p><img src="images/eth-cc.png" alt="legend"></p>
+        <p>MAgIC clearly shows the distribution of drought exposure in Ethiopia. Winter and spring months (approximately November-March) have the least drought exposure, whereas summer and autumn are much more prone to drought. While MAgIC can be displayed graphically, as it is below, mapping drought exposure is important to ascertain its <b>spatial distribution</b>. Click the graphical image to enlarge.</p>
+        <p><a href = "http://i.imgur.com/bI0pMCM.png"><img src="images/eth-cc.png" alt="legend"></a></p>
     <h2>About the data</h2>
         <p>Data for crop start days were developed and provided by <a href = "http://gaez.fao.org/Main.html?ticket=ST-96803-5jRRY5f76WfbfJSJ6hXj-cas#">Global Agro-Ecological Zones (GAEZ)</a> under the Food and Agriculture Organization (FAO) and the International Institute for Applied Systems Analysis (IIASA). Crop Production data were gathered and provided by <a href = "http://www.earthstat.org/data-download/">EarthStat</a> from the University of Minnesota Institute on the Environment. Crop stage/yield response factor data were also provided by FAO, as well as Heinemann, et. al. (2009). </p> 
         <p>Rice Growth Stages: Heinemann, A.B.; Stone, L.F.; Silva, S.C. da. Arroz. In: Monteiro, J.E.B.A. (Ed.). Agrometeorologia dos cultivos: o fator meteorológico na produção agrícola. Brasília: Instituto Nacional de Meteorologia, 2009. p.63‑79.
@@ -514,7 +514,7 @@
                 "</br><b>September</b>" + ": " + props["9"].toLocaleString() + 
                 "</br><b>October</b>" + ": " + props["10"].toLocaleString() + 
                 "</br><b>November</b>" + ": " + props["11"].toLocaleString() + 
-                "</br><b>December</b>" + ": " + props["12"].toLocaleString(); // creates string with unemployment info
+                "</br><b>December</b>" + ": " + props["12"].toLocaleString();             
 
             $(".info").html(html); // selecting something with class of info, use html method to select html string for each county we're mousing over
         }
