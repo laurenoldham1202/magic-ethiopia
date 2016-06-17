@@ -39,6 +39,18 @@
             font-size: 1em;
             color: #001323;
         }
+        .leaflet-popup-content-wrapper {
+            background: #3F3250; 
+            color: #C0B3A0;
+            text-align: center;
+        }
+        .leaflet-popup-content-wrapper h5{
+            color: #E14658;
+            font-size: 1em;
+        }
+        .leaflet-popup-tip-container {
+            color: #3F3250; 
+        }
         .legend {
             padding: 6px 8px;
             font-size: 1em;
@@ -171,6 +183,7 @@
             font-size: .75em;
             columns: 2; 
         }
+
     </style>
 </head>
 
@@ -337,7 +350,7 @@
                     fillColor: getColor(Number(layer.feature.properties[attribute]), breaks)
                 });
             
-            layer.bindPopup("<b>"+layer.feature.properties["admin_name"]+" Region</br>" + monthNames[Number(attribute)-1] + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
+            layer.bindPopup("<b><h5>"+layer.feature.properties["admin_name"]+" Region</h5></br>" + monthNames[Number(attribute)-1] + "</b>: " + layer.feature.properties[attribute].toLocaleString()); //create popup to define each county, the year of interest, and its corresponding unemployment rate    
                 
                 layer.on('mouseover', function() { // create mouseover event
                     
