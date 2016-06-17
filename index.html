@@ -111,7 +111,7 @@
             padding: 8px 15px 8px 15px;
             color: #E14658;
             font-weight: 500;
-            font-size: 1.0em;
+            font-size: 1.1em;
             text-align: center;
         }
         h4 {
@@ -120,7 +120,7 @@
             background: #3F3250;
             width: 100%
             font-weight: 250;
-            font-size: 1em;
+            font-size: 1.1em;
             text-align: center;
             color: #E14658;
             border-bottom: 10px solid #E14658;
@@ -130,7 +130,7 @@
             padding: 0 25px 0 15px;
             color: #22252C;
             text-align: left;
-            font-size: .75em; 
+            font-size: .9em; 
         }
         #side-panel p:after {
             content: '';
@@ -147,8 +147,9 @@
             background: #3F3250;
             color: #C0B3A0; 
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-radius: 5px;
-            text-align: left;   
+            border: 2px solid #E14658;
+            border-radius: 5px;             
+            text-align: right;   
         }
         .info h3 {
             margin: 0;
@@ -214,7 +215,7 @@
         </ul></div>
         <p>Crops were in part chosen based on data availability. To try to keep our focus on small subsistence farming, the 25 crops were filtered as low-input and rain-fed (rather than irrigated).</p>
         <p>For each of the above crops, we created a baseline crop calendar that defines various stages of plant development throughout the year for each administrative unit in Ethiopia. These crop calendars were created by projecting different stages of crop development from planting season start days. Each stage of crop development (initial stage, development stage, mid-season stage, and late stage) corresponds to a <i>yield response factor</i>, which is an FAO measure that represents how a reduction in water impacts yield losses. A higher yield response factor corresponds to a higher drought exposure. The resultant calendars show a relative measure of drought exposure for each of the 25 crops within an administrative unit. These calendars were combined and weighted with raw crop production values and subsequently normalized to yield the final Monthly Agriculture Insurance Calendar. </p>
-        <p>MAgIC clearly shows the distribution of drought exposure in Ethiopia. Winter and spring months (approximately November-March) have the least drought exposure, whereas summer and autumn are much more prone to drought. While MaGIC can be displayed graphically, as it is below, mapping drought exposure is important to ascertain its <b>spatial distribution</b>.</p>
+        <p>MAgIC clearly shows the distribution of drought exposure in Ethiopia. Winter and spring months (approximately November-March) have the least drought exposure, whereas summer and autumn are much more prone to drought. While MAgIC can be displayed graphically, as it is below, mapping drought exposure is important to ascertain its <b>spatial distribution</b>.</p>
         <p><img src="images/eth-cc.png" alt="legend"></p>
     <h2>About the data</h2>
         <p>Data for crop start days were developed and provided by <a href = "http://gaez.fao.org/Main.html?ticket=ST-96803-5jRRY5f76WfbfJSJ6hXj-cas#">Global Agro-Ecological Zones (GAEZ)</a> under the Food and Agriculture Organization (FAO) and the International Institute for Applied Systems Analysis (IIASA). Crop Production data were gathered and provided by <a href = "http://www.earthstat.org/data-download/">EarthStat</a> from the University of Minnesota Institute on the Environment. Crop stage/yield response factor data were also provided by FAO, as well as Heinemann, et. al. (2009). </p> 
@@ -223,7 +224,7 @@
         <p>Yield Response to Water: Doorenbos, J., and A. H. Kassam. "Yield response to water." Irrigation and drainage paper 33 (Rome: FAO, 1979), available from http://203.200.22.249:8080/jspui/bitstream/2014/11987/1/
             Yield_response_to_water.pdf.</p>
         <p>Monthly Agriculture Insurance Calendar: Developed by GlobalAgRisk, Inc. with James Allen, Nathan Arnold, Jason Hartell, Jerzy Jaromczyk, Lauren Oldham, and Jerry Skees.</p>
-</p>
+        <p>Map authored by Lauren Oldham, June 2016.</p>
     </div>
     
     <div id ='ui-controls'>
@@ -237,8 +238,8 @@
         var options = {
             center: [8.95, 42.5],
             zoom: 6,
-            minZoom: 4,
-            maxZoom: 10,
+            minZoom: 5,
+            maxZoom: 7,
             dragging: true,
             zoomControl: true
         }
