@@ -194,7 +194,7 @@
     <h1>Monthly Agriculture Insurance Calendar</h1>
     <h4>Drought Exposure in Ethiopia</h4>
     <h2>Reading this Map</h2>
-        <p>This map displays the drought exposure for each adminsitrative region in Ethiopia for each month of the year. Each region's drought exposure proportions for the year sum to 1. Scrolling through the slider on the bottom left of the map scrolls through each month of the year; this month is displayed in the legend title. Clicking on each region reveals its drought exposure proportion for the selected month. Hovering over each region displays an info window that shows the drought exposure proportions for each month.</p>
+        <p>This map displays the drought exposure for each adminsitrative region in Ethiopia for each month of the year. Each region's drought exposure proportions for the year sum to 1, so each MAgIC proportion is a <b>relative measure of drought exposure</b> (a value of 0.1 means that 10% of that region's drought exposure occurs in the month of interest). Scrolling through the slider on the bottom left of the map scrolls through each month of the year; this month is displayed in the legend title. Clicking on each region reveals its drought exposure proportion for the selected month. Hovering over each region displays an info window that shows the drought exposure proportions for each month.</p>
     <h2>About MAgIC</h2>
         <p>The Monthly Agriculture Insurance Calendar (MAgIC) was created by GlobalAgRisk, Inc. as a food security tool for developing nations. It could potentially be used as a tool to help farmers choose when to insure themselves against crop failure in times of drought.</p>
         <p>MAgIC works by attempting to determine when a country's crops are most vulnerable to drought. While many food security tools already exist, MAgIC is unique in its breadth of focus. Instead of focusing only on the most prominent/"important" crop in a country or region, we have included weighted measures for 25 different crops, listed below:</p>
@@ -516,18 +516,18 @@
             
             var props = layer.feature.properties;
 
-            var html = "<h3><b>"+props["admin_name"]+" Region</b></h3></br>" + "<b>January</b>" + ": " + props["1"].toLocaleString() + 
-                "</br><b>February</b>" + ": " + props["2"].toLocaleString() + 
-                "</br><b>March</b>" + ": " + props["3"].toLocaleString() + 
-                "</br><b>April</b>" + ": " + props["4"].toLocaleString() + 
-                "</br><b>May</b>" + ": " + props["5"].toLocaleString() + 
-                "</br><b>June</b>" + ": " + props["6"].toLocaleString() + 
-                "</br><b>July</b>" + ": " + props["7"].toLocaleString() + 
-                "</br><b>August</b>" + ": " + props["8"].toLocaleString() + 
-                "</br><b>September</b>" + ": " + props["9"].toLocaleString() + 
-                "</br><b>October</b>" + ": " + props["10"].toLocaleString() + 
-                "</br><b>November</b>" + ": " + props["11"].toLocaleString() + 
-                "</br><b>December</b>" + ": " + props["12"].toLocaleString();             
+            var html = "<h3><b>"+props["admin_name"]+" Region</b></h3></br>" + "<b>January</b>" + ": " + props["1"] + 
+                "</br><b>February</b>" + ": " + props["2"] + 
+                "</br><b>March</b>" + ": " + props["3"] + 
+                "</br><b>April</b>" + ": " + props["4"] + 
+                "</br><b>May</b>" + ": " + props["5"] + 
+                "</br><b>June</b>" + ": " + props["6"] + 
+                "</br><b>July</b>" + ": " + props["7"] + 
+                "</br><b>August</b>" + ": " + props["8"] + 
+                "</br><b>September</b>" + ": " + props["9"] + 
+                "</br><b>October</b>" + ": " + props["10"] + 
+                "</br><b>November</b>" + ": " + props["11"] + 
+                "</br><b>December</b>" + ": " + props["12"];             
 
             $(".info").html(html); // selecting something with class of info, use html method to select html string for each county we're mousing over
         }
